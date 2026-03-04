@@ -1,0 +1,14 @@
+{
+  "name": "ai-feedback-analyzer",
+  "version": "1.0.0",
+  "description": "AI-powered feedback analyzer that extracts themes and action points using a local LLM via Ollama",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "analyze:demo": "node index.js \"The app is great but loading times are way too slow. Love the new UI! Customer support was unhelpful and took 3 days to respond. The mobile experience is broken on Android.\""
+  },
+  "dependencies": {
+    "dotenv": "^16.4.0"
+  }
+}
