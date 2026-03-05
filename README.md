@@ -1,13 +1,31 @@
 # AI Feedback Analyzer
 
-Takes raw text feedback, sends it to Claude, and returns structured themes and prioritized action points.
+Analyzes B2B customer feedback entirely on your machine. Paste in raw feedback — interview notes, support tickets, survey responses — and get back structured themes and prioritized action points. No data leaves your machine, no API costs, no internet required.
+
+## Why Local-First
+
+- **Customer data stays on your machine** — B2B feedback often contains commercially sensitive information. Running locally means it never touches a third-party server.
+- **No per-token costs** — Run analyses as many times as you like, on as much feedback as you have, for free.
+- **Works offline** — No dependency on external API availability or rate limits.
+- **Ideal for sensitive feedback** — Safe to use with NDA-covered accounts, pre-release product feedback, or internal escalations.
+
+## Built With
+
+- [Node.js](https://nodejs.org) — Runtime
+- [Ollama](https://ollama.com) — Local LLM server
+- [Qwen 3 8B](https://ollama.com/library/qwen3) — The model doing the analysis
+- [Claude Code CLI](https://claude.ai/code) — Used to build this tool
 
 ## Setup
 
 ```bash
+# 1. Pull the model and start Ollama
+ollama pull qwen3:8b
+ollama serve
+
+# 2. Install dependencies
 npm install
 cp .env.example .env
-# Add your ANTHROPIC_API_KEY to .env
 ```
 
 ## Usage
@@ -104,8 +122,8 @@ console.log(result.action_points);
 
 ```
 src/
-  analyzers/feedbackAnalyzer.js  # Core logic — calls Claude, returns structured result
-  services/llm.js                # Anthropic client singleton
+  analyzers/feedbackAnalyzer.js  # Core logic — calls Ollama, returns structured result
+  services/llm.js                # Ollama HTTP client (fetch-based, no SDK)
   sources/
     base.js                      # Abstract FeedbackSource (extend to add new inputs)
     text.js                      # TextSource, FileSource, stdin reader
