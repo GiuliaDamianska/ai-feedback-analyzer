@@ -42,6 +42,19 @@ src/
 
 **Extensible sources** — To add a new data source (CSV, database, API), extend `FeedbackSource` from `src/sources/base.js`. Only two things required: implement `async load()` and override the `name` getter.
 
+## Git Workflow
+
+After completing any task:
+1. Commit all changes with a message following the format `type: brief description`, where type is one of `feat`, `fix`, `docs`, or `refactor`
+2. Push to GitHub immediately after committing
+
+Commit message rules:
+- `feat:` — new feature or capability
+- `fix:` — bug fix
+- `docs:` — documentation changes only
+- `refactor:` — code restructuring with no behavior change
+- Never use vague messages like "update", "fix", "changes", or "misc"
+
 ## Configuration
 
 `OLLAMA_BASE_URL` (default: `http://localhost:11434`) and `OLLAMA_MODEL` (default: `qwen3:8b`) can be overridden in `.env` or as environment variables.
